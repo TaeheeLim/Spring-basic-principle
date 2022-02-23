@@ -9,7 +9,7 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 
     //할인 정책이 정액에서 정률로 변경 된다면 client인 OrderServiceImpl의 코드가 아래와 같이 바뀌어야 한다.
     //OCP, DIP 같은 객체 지향 설계 원칙을 준수한것 처럼 보이지만 사실은 아니다.
@@ -19,8 +19,13 @@ public class OrderServiceImpl implements OrderService{
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     //그래서 아래와 같이 해야한다.. final 은 반드시 값을 할당해야함
-    private DiscountPolicy discountPolicy;
+    private final DiscountPolicy discountPolicy;
 
+    //생성자 주입을 통해서 구현을 하면 DIP를 지키게 된다. 단지 interface에만 의존한다. not 구현체
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     //단일 책임 원칙을 잘 지킨 경우이다
     //OrderService는 단지 다른 interface를 호출 해서 실행 을 위임하고 오직 결과만 다룬다.
