@@ -27,4 +27,13 @@ public class OrderServiceTest {
         Order order = orderService.createOrder(memberId, "itemA", 10000);
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
+
+    //OrderServiceImpl에 필드 주입을 한 경우 35번째 라인에서 NPE 터진다.
+//    @Test
+//    void fieldInjectionText(){
+//        OrderServiceImpl orderService = new OrderServiceImpl();
+//        orderService.createOrder(1L, "itemA", 10000);
+//    }
+
+
 }

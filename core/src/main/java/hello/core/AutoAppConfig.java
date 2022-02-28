@@ -21,13 +21,12 @@ import org.springframework.context.annotation.FilterType;
 //        basePackages = "hello.core.member"
 )
 public class AutoAppConfig {
-
     //스프링 빈을 등록 할떄 @Component 로 자동 등록, 그리고 @Bean 으로 수동 등록을 할 떄 같은 빈 이름을 가질 경우
     //자동 보다는 수동 등록이 우선권을 가지면서 수동 빈이 자동 빈을 오버라이딩 해버린다.
     //현실 세계에서는 이런 경우는 여러 설정들이 꼬여서 이런 결과가 만들어지는 경우가 대부분이다.. 즉 의도하지 않았다. 조심!!
     //굉장히 잡기 어려운 버그가 만들어진다.
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository(){
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    MemberRepository memberRepository(){
+//        return new MemoryMemberRepository();
+//    }
 }
